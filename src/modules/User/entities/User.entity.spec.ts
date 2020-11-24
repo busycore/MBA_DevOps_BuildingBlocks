@@ -1,3 +1,4 @@
+import { Cipher } from "crypto";
 import User from "./User.entity";
 
 describe("User Entity test", () => {
@@ -10,5 +11,11 @@ describe("User Entity test", () => {
     const newUser = new User("Joao", "abc123");
 
     expect(newUser.authenticate("abc321")).toBe(false);
+  });
+
+  it("should be able to generate a random password", () => {
+    const newUser = new User("Joao", "abc123");
+
+    expect(newUser.generateWeakPass()).toBeInstanceOf(Cipher);
   });
 });
