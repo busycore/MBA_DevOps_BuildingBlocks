@@ -13,6 +13,7 @@ export default class User {
     return pass === this.password;
   }
 
+  //This is as weak implementation UNCOMENT TO MAKE IT POINTS IT
   public generateWeakPass(): any {
     let iv = crypto.randomBytes(16);
     let cipher = crypto.createCipheriv(
@@ -20,6 +21,14 @@ export default class User {
       Buffer.from("11111111111111111111111111111111"),
       iv
     );
-    return cipher; // Noncompliant: DES / 3DES is unsecure Noncompliant: DES / 3DES is unsecure
+    return cipher;
+  }
+
+  //-------------------------------------------------------
+
+  //It will throw a code smell
+  public async UngracefullCode(): Promise<void> {
+    let x = 1;
+    await x;
   }
 }
