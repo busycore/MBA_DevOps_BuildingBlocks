@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/home/linuxuser/nodeprojects/MBA/buildingblocks/src/modules/User/entities/User.entity.spec.ts">
+    <testCase name="User Entity test should be able to authenticate" duration="2"/>
+    <testCase name="User Entity test should not be able to authenticate with a wrong pass" duration="0"/>
+  </file>
+</testExecutions>
