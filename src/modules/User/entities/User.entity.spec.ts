@@ -1,3 +1,4 @@
+import { Cipher } from "crypto";
 import User from "./User.entity";
 
 describe("User Entity test", () => {
