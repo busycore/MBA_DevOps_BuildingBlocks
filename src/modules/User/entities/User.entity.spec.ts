@@ -11,4 +11,10 @@ describe("User Entity test", () => {
 
     expect(newUser.authenticate("abc321")).toBe(false);
   });
+
+  it("should be able to generate a random password", () => {
+    const newUser = new User("Joao", "abc123");
+
+    expect(newUser.generateWeakPass()).toBe("works");
+  });
 });

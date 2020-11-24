@@ -14,14 +14,14 @@ export default class User {
   }
 
   //This is as weak implementation UNCOMENT TO MAKE IT POINTS IT
-  public generateWeakPass(): any {
+  public generateWeakPass(): string {
     let iv = crypto.randomBytes(16);
     let cipher = crypto.createCipheriv(
       "aes-256-cbc",
       Buffer.from("11111111111111111111111111111111"),
       iv
     );
-    return cipher;
+    return "works";
   }
 
   //-------------------------------------------------------
