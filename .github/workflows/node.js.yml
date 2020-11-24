@@ -52,7 +52,8 @@ jobs:
         uses: insidersec/insider-action@v0.2.0
         with:
           technology: javascript
-
+          target: src
+      
       - name: (Security) nodejsscan scan
         id: njsscan
         uses: ajinabraham/njsscan-action@master
@@ -65,3 +66,5 @@ jobs:
       
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
+        with:
+         sarif_file: results.sarif    
