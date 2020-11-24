@@ -58,10 +58,10 @@ jobs:
         uses: ajinabraham/njsscan-action@master
         with:
           args: '. --sarif --output results.sarif || true'
-      - name: Upload njsscan report
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: results.sarif    
+     # - name: Upload njsscan report
+     #   uses: github/codeql-action/upload-sarif@v1
+     #   with:
+     #     sarif_file: results.sarif    
       
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
