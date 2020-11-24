@@ -28,6 +28,9 @@ jobs:
     
     - name: (CT) Run Tests
       run: yarn test
+
+    - name: (CT) Run Code Coverage
+      run: yarn test --coverage
     
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
