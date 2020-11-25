@@ -7,6 +7,7 @@ describe("User Entity test", () => {
 
     expect(newUser.authenticate("abc123")).toBe(true);
   });
+
   it("should not be able to authenticate with a wrong pass", () => {
     const newUser = new User("Joao", "abc123");
 
