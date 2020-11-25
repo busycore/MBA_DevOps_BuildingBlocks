@@ -47,7 +47,8 @@ jobs:
      #   uses: microsoft/DevSkim-Action@v1
 
       - name : Create Folder
-        run: mkdir results
+        run: mkdir results|
+          ls results/
           
       - name: (Security) Insider Action
         # You may pin to the exact commit or the version.
@@ -61,7 +62,7 @@ jobs:
         id: njsscan
         uses: ajinabraham/njsscan-action@master
         with:
-          args: '. --sarif --output ${{ GITHUB.WORKSPACE }}/results/njsscan-results.sarif || true'
+          args: '. --sarif --output results/njsscan-results.sarif || true'
      # - name: Upload njsscan report
      #   uses: github/codeql-action/upload-sarif@v1
      #   with:
