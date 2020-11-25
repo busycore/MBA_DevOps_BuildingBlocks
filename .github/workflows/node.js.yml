@@ -44,7 +44,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           
       - name: Create Results Folder
-        run: mkdir results 
+        run: mkdir ../results 
 
       # - name: (Security) DevSkim
       #   uses: microsoft/DevSkim-Action@v1
@@ -61,7 +61,7 @@ jobs:
         id: njsscan
         uses: ajinabraham/njsscan-action@master
         with:
-          args: "src --sarif --output results/results.sarif || true"
+          args: "src --sarif --output ../results/results.sarif || true"
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
