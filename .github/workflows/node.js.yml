@@ -58,10 +58,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /site/wwwroot/dist/
-          dry-run: true
+          dry-run: false
           exclude: .git*
             - .git*/**
             - src
             - coverage
             - resultados
-            - **/.git*/**
