@@ -26,11 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: javascript
-
       - name: 🧰 Install Dependencies
         run: yarn
 
@@ -52,17 +47,6 @@ jobs:
           technology: javascript
           target: src
 
-      - name: 🕵️‍♂️(Security) nodejsscan scan
-        id: njsscan
-        uses: ajinabraham/njsscan-action@master
-        with:
-          args: "src --sarif --output resultados/results.sarif || true"
-
-      - name: 🕵️‍♂️Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
-        with:
-          output: resultados
-
       - name: 🔨Build Project
         run: yarn build
 
@@ -72,10 +56,12 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /site/wwwroot/
-          dry-run: false
+          local-dir: ./dist/
+          server-dir: /site/wwwroot/dist/
+          dry-run: true
           exclude: .git*
             - .git*/**
-            - **/.git*/**
+            - src
             - coverage
+            - resultados
+            - **/.git*/**
