@@ -22,7 +22,7 @@ app.use(cors());
 const user = new User("Joao", "213");
 
 app.listen(3333, () => {
-  console.log("[ 🟢 ] Server started");
+  console.log("🟢 Server started !!");
   appInsights.defaultClient.trackEvent({
     name: "Server started",
     properties: { startedTime: new Date() },
