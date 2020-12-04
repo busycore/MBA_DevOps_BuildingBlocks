@@ -34,14 +34,14 @@ jobs:
       - name: 🧰 Install Dependencies
         run: yarn
 
-      - name: 🧪 (CT) Run Tests & Generate Coverage
-        run: yarn test --coverage
+      # - name: 🧪 (CT) Run Tests & Generate Coverage
+      #   run: yarn test --coverage
 
-      - name: 🔎 SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # - name: 🔎 SonarCloud Scan
+      #   uses: sonarsource/sonarcloud-github-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # - name: 🗀 Create Results Folder
       #   run: mkdir resultados
@@ -72,10 +72,19 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 990
           local-dir: ./
-          dry-run: true
+          server-dir: /site/wwwroot/
+          dry-run: false
           exclude: .git*
             - .git*/**
             - **/.git*/**
             - coverage
+
+      # - name: Upload ftp
+      #   uses: sebastianpopp/ftp-action@master
+      #   with:
+      #     host: waws-prod-mwh-049.ftp.azurewebsites.windows.net
+      #     user: buildblocks\$buildblocks
+      #     password: zDiSZrkvEHokmowZCjyCg9sGhvlwtu2Tgt9iy15HjNDK9igpotQk9mh4xAvT
+      #     localDir: "."
+      #     remoteDir: "www"
