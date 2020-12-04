@@ -26,10 +26,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
-        with:
-          languages: javascript
+      # - name: Initialize CodeQL
+      #   uses: github/codeql-action/init@v1
+      #   with:
+      #     languages: javascript
 
       - name: 🧰 Install Dependencies
         run: yarn
@@ -43,31 +43,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: 🗀 Create Results Folder
-        run: mkdir resultados
+      # - name: 🗀 Create Results Folder
+      #   run: mkdir resultados
 
-      - name: 🕵️‍♂️(Security) Insider Action
-        uses: insidersec/insider-action@v0.2.0
-        with:
-          technology: javascript
-          target: src
+      # - name: 🕵️‍♂️(Security) Insider Action
+      #   uses: insidersec/insider-action@v0.2.0
+      #   with:
+      #     technology: javascript
+      #     target: src
 
-      - name: 🕵️‍♂️(Security) nodejsscan scan
-        id: njsscan
-        uses: ajinabraham/njsscan-action@master
-        with:
-          args: "src --sarif --output resultados/results.sarif || true"
+      # - name: 🕵️‍♂️(Security) nodejsscan scan
+      #   id: njsscan
+      #   uses: ajinabraham/njsscan-action@master
+      #   with:
+      #     args: "src --sarif --output resultados/results.sarif || true"
 
-      - name: 🕵️‍♂️Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
-        with:
-          output: resultados
+      # - name: 🕵️‍♂️Perform CodeQL Analysis
+      #   uses: github/codeql-action/analyze@v1
+      #   with:
+      #     output: resultados
 
       - name: 🔨Build Project
         run: yarn build
 
       - name: 📁Deploy to Azure
-        uses: SamKirkland/FTP-Deploy-Action@3.1.1
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
           ftp-server: ${{ secrets.FTP_SERVER }}
           ftp-username: ${{ secrets.FTP_USERNAME }}
@@ -78,6 +78,4 @@ jobs:
           exclude: .git*
             - .git*/**
             - **/.git*/**
-            - node_modules/**
-            - node_modules/**/*
             - coverage
