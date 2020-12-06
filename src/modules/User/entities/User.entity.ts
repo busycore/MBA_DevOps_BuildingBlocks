@@ -13,6 +13,14 @@ export default class User {
     return pass === this.password;
   }
 
+  /**
+   * Getter $name
+   * @return {string}
+   */
+  public get $name(): string {
+    return this.name;
+  }
+
   //This is as weak implementation UNCOMENT TO MAKE IT POINTS IT
   public generateWeakPass(): string {
     let iv = crypto.randomBytes(16);

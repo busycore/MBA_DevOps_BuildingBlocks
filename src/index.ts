@@ -1,6 +1,5 @@
 import User from "./modules/User/entities/User.entity";
-import cors from "cors";
-import express, { NextFunction, Response, Request } from "express";
+import http from "http";
 
 // respond with "hello world" when a GET request is made to the homepage
 const appInsights = require("applicationinsights");
@@ -17,22 +16,19 @@ appInsights
   .setSendLiveMetrics(false)
   .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
   .start();
-const app = express();
-app.use(cors());
-const user = new User("Joao", "213");
 
-app.listen(3333, () => {
-  console.log("🟢 Server started !!");
+const user = new User("Thiago", "123456");
+
+const server = http.createServer((request, response) => {
+  response.writeHead(200, { "Content-Type": "text/plain" });
+  response.end(`Hello ${user.$name}`);
   appInsights.defaultClient.trackEvent({
     name: "Server started",
     properties: { startedTime: new Date() },
   });
 });
 
-app.get("/", function (req, res) {
-  appInsights.defaultClient.trackRequest({
-    name: "GET /",
-    url: req.url,
-  });
-  res.send("<b>Hello World</b>");
-});
+const port = process.env.PORT || 1337;
+server.listen(port);
+
+console.log("Server running at http://localhost:%d", port);
