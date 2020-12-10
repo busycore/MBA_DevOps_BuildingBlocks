@@ -12,7 +12,7 @@ describe("User Entity test", () => {
     const newUser = new User("Joao", "abc123");
 
     //Change to True to simulate a fail test
-    expect(newUser.authenticate("abc321")).toBe(true);
+    expect(newUser.authenticate("abc321")).toBe(false);
   });
 
   it("should be able to generate a random password", () => {
