@@ -11,7 +11,8 @@ describe("User Entity test", () => {
   it("should not be able to authenticate with a wrong pass", () => {
     const newUser = new User("Joao", "abc123");
 
-    expect(newUser.authenticate("abc321")).toBe(false);
+    //Change to True to simulate a fail test
+    expect(newUser.authenticate("abc321")).toBe(true);
   });
 
   it("should be able to generate a random password", () => {
